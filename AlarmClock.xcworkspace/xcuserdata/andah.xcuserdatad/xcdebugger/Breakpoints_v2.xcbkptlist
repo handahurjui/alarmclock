@@ -25,60 +25,12 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "AlarmClock/Controllers/AlarmTableViewController.swift"
-            timestampString = "552407525.183267"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "177"
-            endingLineNumber = "177"
-            landmarkName = "alarmTableViewCellDidTouchSwitch(cell:sender:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "AlarmClock.AlarmTableViewController.alarmTableViewCellDidTouchSwitch(cell: AlarmClock.AlarmTableViewCell, sender: __ObjC.UISwitch) -&gt; ()"
-                  moduleName = "AlarmClock"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/andah/AlarmClock/AlarmClock/Controllers/AlarmTableViewController.swift"
-                  timestampString = "552407569.823071"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "177"
-                  endingLineNumber = "177"
-                  offsetFromSymbolStart = "577">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "AlarmClock.AlarmTableViewController.alarmTableViewCellDidTouchSwitch(cell: AlarmClock.AlarmTableViewCell, sender: __ObjC.UISwitch) -&gt; ()"
-                  moduleName = "AlarmClock"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/andah/AlarmClock/AlarmClock/Controllers/AlarmTableViewController.swift"
-                  timestampString = "552407569.824881"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "177"
-                  endingLineNumber = "177"
-                  offsetFromSymbolStart = "3512">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "AlarmClock/Networking/NetworkClient.swift"
-            timestampString = "552408715.80331"
+            timestampString = "552433959.4944251"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "209"
-            endingLineNumber = "209"
+            startingLineNumber = "217"
+            endingLineNumber = "217"
             landmarkName = "editAlarm(alarm:)"
             landmarkType = "7">
             <Locations>
@@ -90,12 +42,12 @@
                   moduleName = "AlarmClock"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/andah/AlarmClock/AlarmClock/Networking/NetworkClient.swift"
-                  timestampString = "552407569.8051929"
+                  timestampString = "552433959.6580549"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "203"
-                  endingLineNumber = "203"
-                  offsetFromSymbolStart = "2320">
+                  startingLineNumber = "217"
+                  endingLineNumber = "217"
+                  offsetFromSymbolStart = "1637">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -105,11 +57,11 @@
                   moduleName = "AlarmClock"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/andah/AlarmClock/AlarmClock/Networking/NetworkClient.swift"
-                  timestampString = "552407569.808606"
+                  timestampString = "552433959.66143"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "203"
-                  endingLineNumber = "203"
+                  startingLineNumber = "217"
+                  endingLineNumber = "217"
                   offsetFromSymbolStart = "46">
                </Location>
             </Locations>
@@ -122,11 +74,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AlarmClock/Networking/NetworkClient.swift"
-            timestampString = "552408715.804242"
+            timestampString = "552433959.494988"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "214"
-            endingLineNumber = "214"
+            startingLineNumber = "222"
+            endingLineNumber = "222"
+            landmarkName = "editAlarm(alarm:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AlarmClock/Networking/NetworkClient.swift"
+            timestampString = "552433959.4953671"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "219"
+            endingLineNumber = "219"
             landmarkName = "editAlarm(alarm:)"
             landmarkType = "7">
          </BreakpointContent>

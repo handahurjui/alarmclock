@@ -45,7 +45,8 @@ class NetworkClient {
         return URLSession(configuration: config)
     }()
     var dataTask: URLSessionDataTask?
-        let decoder = JSONDecoder()
+    let decoder = JSONDecoder()
+    let encoder = JSONEncoder()
     
     func getAlarms(completion: @escaping AlarmsResults){
         dataTask?.cancel()
@@ -189,24 +190,18 @@ class NetworkClient {
         dataTask?.cancel()
         
         let urlString = NetworkClient.baseURL + ResourcePath.Update.description + "/\(alarm.id)"
-//        guard var url = URL(string: urlString) else { return }
-//        var request = URLRequest(url: url)
-//        request.httpMethod = "PUT"
-//        request.allHTTPHeaderFields = ["x-token": NetworkClient.token]
-//        let requestBody = ["label":alarm.label,
-//                           "hour":alarm.hour,
-//                           "minutes":alarm.minutes,
-//                           "enabled": alarm.enabled ] as [String:Any]
-//        let data = try? JSONSerialization.data(withJSONObject: requestBody, options: [])
-//        let data = "label:\(alarm.label),hour:\(alarm.hour),minutes:\(alarm.minutes),enabled:\(alarm.enabled)"
-//
-//        request.httpBody = "label:\(alarm.label),hour:\(alarm.hour),minutes:\(alarm.minutes),enabled:\(alarm.enabled)"
-        guard var urlComponents = URLComponents(string: urlString)
-            else { return }
-        urlComponents.query = "label:\(alarm.label),hour:\(alarm.hour),minutes:\(alarm.minutes),enabled:\(alarm.enabled)"
-        guard let url = urlComponents.url else { return }
-        
-        dataTask = defaultSession.dataTask(with: url, completionHandler: { [weak self] (data, response, error) in
+        guard var url = URL(string: urlString) else { return }
+        var request = URLRequest(url: url)
+        request.httpMethod = "PUT"
+        request.allHTTPHeaderFields = ["x-token": NetworkClient.token,
+                                       "Content-Type":"application/json"]
+        do {
+            request.httpBody = try encoder.encode(alarm)
+        } catch let encodeError as NSError {
+            print("Encoder error: \(encodeError.localizedDescription)\n")
+         
+        }
+        dataTask = defaultSession.dataTask(with: request, completionHandler: { [weak self] (data, response, error) in
             defer { self?.dataTask = nil }
             if let error = error {
                 self?.errorMessage += "DataTask error: \(error.localizedDescription) \n"
