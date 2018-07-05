@@ -11,6 +11,7 @@ protocol AddEditAlarmViewControllerDelegate: class {
   
     func addEditAlarmViewController(_ controller: AddEditAlarmViewController, didFinishAdding item: Alarm)
     func addEditAlarmViewController(_ controller: AddEditAlarmViewController, didFinishEditing item: Alarm)
+    func addEditAlarmViewController(_ controller: AddEditAlarmViewController, didDeleteItem item: Alarm)
 }
 class AddEditAlarmViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -83,6 +84,7 @@ class AddEditAlarmViewController: UIViewController, UITableViewDataSource, UITab
         }
         if indexPath.section == 0 {
             if indexPath.row == 0 {
+                cell?.selectionStyle = . none
                 cell?.textLabel?.text = "Repeat"
                 cell?.detailTextLabel?.text = "Never"
                 cell?.accessoryType = .disclosureIndicator
@@ -93,13 +95,14 @@ class AddEditAlarmViewController: UIViewController, UITableViewDataSource, UITab
                 cell?.accessoryType = .disclosureIndicator
             }
             else if indexPath.row == 2 {
+                cell?.selectionStyle = . none
                 cell?.textLabel?.text = "Sound"
                 cell?.detailTextLabel?.text = "Sencha"
                 cell?.accessoryType = .disclosureIndicator
             }
             else if indexPath.row == 3 {
                 cell?.textLabel?.text = "Snooze"
-                
+                cell?.selectionStyle = . none
                 let switchBtn = UISwitch(frame: CGRect())
                 switchBtn.isOn = true
                 switchBtn.addTarget(self, action: #selector(switchBtnTapped), for: .touchUpInside)
@@ -133,6 +136,9 @@ class AddEditAlarmViewController: UIViewController, UITableViewDataSource, UITab
             if indexPath.row == 1 {
                 performSegue(withIdentifier: "editLabelSegue", sender: self)
             }
+        } else {
+            delegate?.addEditAlarmViewController(self, didDeleteItem: tempAlarm)
+            
         }
         tableView.deselectRow(at: indexPath, animated: true)
     }

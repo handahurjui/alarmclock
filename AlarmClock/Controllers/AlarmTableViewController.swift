@@ -226,6 +226,20 @@ extension AlarmTableViewController : AddEditAlarmViewControllerDelegate {
         dismiss(animated: true, completion: nil)
         apiClient.editAlarm(alarm: item)
     }
-    
+    func addEditAlarmViewController(_ controller: AddEditAlarmViewController, didDeleteItem item: Alarm){
+        
+        if let index = alarms.index(of: item) {
+            let indexPath = IndexPath(row: index, section:0)
+            alarms.remove(at: index)
+            if alarms.count == 0 {
+                self.navigationItem.leftBarButtonItem = nil
+            }
+            // Delete the row from the data source
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+        
+        dismiss(animated: true, completion: nil)
+        apiClient.deleteAlarm(id: item.id)
+    }
     
 }
