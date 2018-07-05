@@ -52,10 +52,10 @@ class AddEditAlarmViewController: UIViewController, UITableViewDataSource, UITab
         tempAlarm.minutes = minutes
         tempAlarm.enabled = true
         if isEditMode {
-            apiClient.editAlarm(alarm: tempAlarm)
+           
             delegate?.addEditAlarmViewController(self, didFinishEditing: tempAlarm)
         } else {
-            apiClient.addAlarm(alarm: tempAlarm)
+            
             delegate?.addEditAlarmViewController(self, didFinishAdding: tempAlarm)
         }
 //        performSegue(withIdentifier: "saveAddEditSegue", sender: tempAlarm)

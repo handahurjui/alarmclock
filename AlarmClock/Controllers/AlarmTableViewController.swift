@@ -17,17 +17,7 @@ class AlarmTableViewController: UITableViewController {
    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        tableView.allowsSelectionDuringEditing = true
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        
-        UIApplication.shared.statusBarStyle = .lightContent
+//        UIApplication.shared.statusBarStyle = .lightContent
         let loadingNotification = MBProgressHUD.showAdded(to: view, animated: true)
         loadingNotification.mode = MBProgressHUDMode.indeterminate
         loadingNotification.label.text = "Loading.."
@@ -42,10 +32,20 @@ class AlarmTableViewController: UITableViewController {
                 self?.tableView.reloadData()
                 MBProgressHUD.hide(for: (self?.view)! , animated: true)
             } else {
-
+                
                 print("Error ")
             }
         }
+        // Uncomment the following line to preserve selection between presentations
+        // self.clearsSelectionOnViewWillAppear = false
+
+        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        tableView.allowsSelectionDuringEditing = true
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        
+     
         super.viewWillAppear(animated)
         // for testing when no internet connection
 //        self.alarms  = [Alarm(id: 1, label: "Alarm1", hour: 12, minutes: 12, enabled: true,token: "asadssadf"),Alarm(id: 2, label: "Alarm2", hour: 14, minutes: 14, enabled: true,token: "asadssadf"),Alarm(id: 3, label: "Alarm3", hour: 14, minutes: 47, enabled: false,token: "asadssadf")]
@@ -208,6 +208,8 @@ extension AlarmTableViewController : AddEditAlarmViewControllerDelegate {
         tableView.insertRows(at: [indexPath], with: .automatic)
         
         dismiss(animated: true, completion: nil)
+        apiClient.addAlarm(alarm: item)
+        
     }
     
     func addEditAlarmViewController(_ controller: AddEditAlarmViewController, didFinishEditing item: Alarm) {
@@ -215,12 +217,17 @@ extension AlarmTableViewController : AddEditAlarmViewControllerDelegate {
         if let index = alarms.index(of: item) {
             let indexPath = IndexPath(row: index, section:0)
             if let cell = tableView.cellForRow(at: indexPath)  as? AlarmTableViewCell {
-                cell.configureAlarmCellWithAlarm(item)
+                cell.alarmTime.text = "\(item.hour)" + ":" + "\(item.minutes)"
+                cell.alarmTitle.text = item.label
+                cell.enableSwitch.isOn = item.enabled!
+                cell.setNeedsDisplay()
             }
-//            tableView.reloadRows(at: [indexPath], with: .automatic)
+            tableView.reloadRows(at: [indexPath], with: .automatic)
             
         }
+        
         dismiss(animated: true, completion: nil)
+        apiClient.editAlarm(alarm: item)
     }
     
     
