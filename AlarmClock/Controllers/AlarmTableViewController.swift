@@ -217,10 +217,7 @@ extension AlarmTableViewController : AddEditAlarmViewControllerDelegate {
         if let index = alarms.index(of: item) {
             let indexPath = IndexPath(row: index, section:0)
             if let cell = tableView.cellForRow(at: indexPath)  as? AlarmTableViewCell {
-                cell.alarmTime.text = "\(item.hour)" + ":" + "\(item.minutes)"
-                cell.alarmTitle.text = item.label
-                cell.enableSwitch.isOn = item.enabled!
-                cell.setNeedsDisplay()
+                cell.configureAlarmCellWithAlarm(item)
             }
             tableView.reloadRows(at: [indexPath], with: .automatic)
             
