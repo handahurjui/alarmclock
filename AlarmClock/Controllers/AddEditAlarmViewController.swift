@@ -9,8 +9,8 @@
 import UIKit
 protocol AddEditAlarmViewControllerDelegate: class {
   
-    func AddEditAlarmViewController(_ controller: AddEditAlarmViewController, didFinishAdding item: Alarm)
-    func AddEditAlarmViewController(_ controller: AddEditAlarmViewController, didFinishEditing item: Alarm)
+    func addEditAlarmViewController(_ controller: AddEditAlarmViewController, didFinishAdding item: Alarm)
+    func addEditAlarmViewController(_ controller: AddEditAlarmViewController, didFinishEditing item: Alarm)
 }
 class AddEditAlarmViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -53,10 +53,10 @@ class AddEditAlarmViewController: UIViewController, UITableViewDataSource, UITab
         tempAlarm.enabled = true
         if isEditMode {
             apiClient.editAlarm(alarm: tempAlarm)
-            delegate?.AddEditAlarmViewController(self, didFinishEditing: tempAlarm)
+            delegate?.addEditAlarmViewController(self, didFinishEditing: tempAlarm)
         } else {
             apiClient.addAlarm(alarm: tempAlarm)
-            delegate?.AddEditAlarmViewController(self, didFinishAdding: tempAlarm)
+            delegate?.addEditAlarmViewController(self, didFinishAdding: tempAlarm)
         }
 //        performSegue(withIdentifier: "saveAddEditSegue", sender: tempAlarm)
     }
@@ -134,7 +134,7 @@ class AddEditAlarmViewController: UIViewController, UITableViewDataSource, UITab
                 performSegue(withIdentifier: "editLabelSegue", sender: self)
             }
         }
-        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -143,19 +143,35 @@ class AddEditAlarmViewController: UIViewController, UITableViewDataSource, UITab
         if segue.identifier == "saveAddEditSegue" {
             let destination = segue.destination as! AlarmTableViewController
             
+        } else if segue.identifier == "editLabelSegue" {
+            let vc = segue.destination as! EditLabelTableViewController
+            vc.delegate = self
+            vc.itemToEdit = tempAlarm
         }
     }
     
-    @IBAction func unwindFromEditLabelVC(_ segue: UIStoryboardSegue){
-        if segue.identifier == "doneEditLabelSegue" {
-            if let vc = segue.source as? EditLabelTableViewController {
-                if let cell = tableView.cellForRow(at: IndexPath(row: 1, section: 0)) {
-                    cell.detailTextLabel?.text = vc.textField.text
-                    tempAlarm.label = (cell.detailTextLabel?.text)!
-                }
+//    @IBAction func unwindFromEditLabelVC(_ segue: UIStoryboardSegue){
+//        if segue.identifier == "doneEditLabelSegue" {
+//            if let vc = segue.source as? EditLabelTableViewController {
+//                if let cell = tableView.cellForRow(at: IndexPath(row: 1, section: 0)) {
+//                    cell.detailTextLabel?.text = vc.textField.text
+//                    tempAlarm.label = (cell.detailTextLabel?.text)!
+//                }
+//            }
+//        }
+//        tableView.reloadRows(at: [IndexPath(row: 1, section: 0)], with: .automatic)
+//
+//    }
+}
+extension AddEditAlarmViewController : EditLabelTableViewControllerDelegate {
+    func editLabelTableViewController(_ controller: EditLabelTableViewController, didFinishEditing item: Alarm) {
+            let indexPath = IndexPath(row: 1, section:0)
+            if let cell = tableView.cellForRow(at: indexPath) {
+                cell.detailTextLabel?.text = item.label
             }
-        }
-        tableView.reloadRows(at: [IndexPath(row: 1, section: 0)], with: .automatic)
         
+        navigationController?.popViewController(animated: true)
     }
+    
+    
 }

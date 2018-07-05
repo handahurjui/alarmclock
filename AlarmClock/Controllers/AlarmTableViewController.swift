@@ -199,7 +199,7 @@ extension AlarmTableViewController : AlarmTableViewCellDelegate {
     
 }
 extension AlarmTableViewController : AddEditAlarmViewControllerDelegate {
-    func AddEditAlarmViewController(_ controller: AddEditAlarmViewController, didFinishAdding item: Alarm) {
+    func addEditAlarmViewController(_ controller: AddEditAlarmViewController, didFinishAdding item: Alarm) {
         isEditing = false
         let newRowIndex = alarms.count
         alarms.append(item)
@@ -210,11 +210,14 @@ extension AlarmTableViewController : AddEditAlarmViewControllerDelegate {
         dismiss(animated: true, completion: nil)
     }
     
-    func AddEditAlarmViewController(_ controller: AddEditAlarmViewController, didFinishEditing item: Alarm) {
+    func addEditAlarmViewController(_ controller: AddEditAlarmViewController, didFinishEditing item: Alarm) {
         isEditing = false
         if let index = alarms.index(of: item) {
             let indexPath = IndexPath(row: index, section:0)
-            tableView.reloadRows(at: [indexPath], with: .automatic)
+            if let cell = tableView.cellForRow(at: indexPath)  as? AlarmTableViewCell {
+                cell.configureAlarmCellWithAlarm(item)
+            }
+//            tableView.reloadRows(at: [indexPath], with: .automatic)
             
         }
         dismiss(animated: true, completion: nil)

@@ -49,7 +49,7 @@ class EditLabelTableViewController: UITableViewController , UITextFieldDelegate 
     @IBAction func doneBtnTapped(_ sender: Any) {
         if let itemToEdit = itemToEdit {
             itemToEdit.label = textField.text!
-            apiClient.editAlarm(alarm: itemToEdit)
+//            apiClient.editAlarm(alarm: itemToEdit)
             delegate?.editLabelTableViewController(self, didFinishEditing: itemToEdit)
         }
     }

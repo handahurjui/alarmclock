@@ -49,7 +49,7 @@ class NetworkClient {
     let encoder = JSONEncoder()
     
     func getAlarms(completion: @escaping AlarmsResults){
-        dataTask?.cancel()
+        
         
         let urlString = NetworkClient.baseURL + ResourcePath.Get.description
     
@@ -119,7 +119,7 @@ class NetworkClient {
         }
     }
     func getAlarm(id: Int, completion: @escaping AlarmResult){
-        dataTask?.cancel()
+        
         
         let urlString = NetworkClient.baseURL + ResourcePath.Get.description + "/\(id)"
         
@@ -154,7 +154,7 @@ class NetworkClient {
     }
     
     func addAlarm(alarm: Alarm){
-        dataTask?.cancel()
+        
         
         let urlString = NetworkClient.baseURL + ResourcePath.Create.description
         guard var url = URL(string: urlString) else { return }
@@ -188,7 +188,7 @@ class NetworkClient {
         dataTask?.resume()
     }
     func editAlarm(alarm: Alarm){
-        dataTask?.cancel()
+        
         
         let urlString = NetworkClient.baseURL + ResourcePath.Update.description + "/\(alarm.id)"
         guard var url = URL(string: urlString) else { return }
@@ -221,7 +221,7 @@ class NetworkClient {
         dataTask?.resume()
     }
     func deleteAlarm(id: Int){
-        dataTask?.cancel()
+       
         
         let urlString = NetworkClient.baseURL + ResourcePath.Delete.description + "/\(id)"
         guard var url = URL(string: urlString) else { return }
