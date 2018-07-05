@@ -21,9 +21,7 @@ class AddEditAlarmViewController: UIViewController, UITableViewDataSource, UITab
     var itemToEdit : Alarm?
     weak var delegate: AddEditAlarmViewControllerDelegate?
     
-//    var alarmTitle: String = "Alarm"
     var isEditMode: Bool!
-    var cellIndex: Int!
     let apiClient = NetworkClient()
     var tempAlarm = Alarm()
     
@@ -33,6 +31,7 @@ class AddEditAlarmViewController: UIViewController, UITableViewDataSource, UITab
         super.viewDidLoad()
         datePicker.setValue(UIColor.white, forKey: "textColor")
         tableView.backgroundColor = .black
+        tableView.separatorColor = .gray
         // Do any additional setup after loading the view.
     }
 
@@ -41,25 +40,20 @@ class AddEditAlarmViewController: UIViewController, UITableViewDataSource, UITab
         // Dispose of any resources that can be recreated.
     }
     @IBAction func saveBtnTapped(_ sender: Any) {
-        let index = cellIndex
         let date = datePicker.date
         let components = Calendar.current.dateComponents([.hour, .minute], from: date)
         let hour = components.hour!
         let minutes = components.minute!
-        
-        
+
         tempAlarm.label = isEditMode ? tempAlarm.label : "Alarm"
         tempAlarm.hour = hour
         tempAlarm.minutes = minutes
         tempAlarm.enabled = true
         if isEditMode {
-           
             delegate?.addEditAlarmViewController(self, didFinishEditing: tempAlarm)
         } else {
-            
             delegate?.addEditAlarmViewController(self, didFinishAdding: tempAlarm)
         }
-//        performSegue(withIdentifier: "saveAddEditSegue", sender: tempAlarm)
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {

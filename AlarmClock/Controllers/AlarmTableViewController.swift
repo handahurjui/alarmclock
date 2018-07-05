@@ -12,7 +12,6 @@ import MBProgressHUD
 class AlarmTableViewController: UITableViewController {
 
     var alarms: [Alarm] = []
-//        [Alarm(id: 1, label: "Alarm1", hour: 12, minutes: 12, enabled: false),Alarm(id: 2, label: "Alarm2", hour: 14, minutes: 14, enabled: true),Alarm(id: 3, label: "Alarm3", hour: 14, minutes: 47, enabled: false)]
     let apiClient = NetworkClient()
    
     override func viewDidLoad() {
@@ -41,21 +40,8 @@ class AlarmTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        tableView.separatorColor = .gray
         tableView.allowsSelectionDuringEditing = true
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        
-     
-        super.viewWillAppear(animated)
-        // for testing when no internet connection
-//        self.alarms  = [Alarm(id: 1, label: "Alarm1", hour: 12, minutes: 12, enabled: true,token: "asadssadf"),Alarm(id: 2, label: "Alarm2", hour: 14, minutes: 14, enabled: true,token: "asadssadf"),Alarm(id: 3, label: "Alarm3", hour: 14, minutes: 47, enabled: false,token: "asadssadf")]
-//        self.tableView.reloadData()
-       
-    
-    }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
-        
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -155,25 +141,17 @@ class AlarmTableViewController: UITableViewController {
             addEditVC.navigationItem.title = "Add Alarm"
             addEditVC.delegate = self
             addEditVC.isEditMode = false
-            addEditVC.cellIndex = alarms.count
-//            addEditVC.alarmTitle = ala
         }
         else if segue.identifier == "editSegue" {
             addEditVC.navigationItem.title = "Edit Alarm"
             addEditVC.delegate = self
             addEditVC.isEditMode = true
-            addEditVC.cellIndex = sender as! Int
-//            addEditVC.alarmTitle = alarms[sender as! Int].label
-           
             addEditVC.tempAlarm = alarms[sender as! Int]
-            
         }
     }
     @IBAction func unwindFromAddEditVC(_ segue: UIStoryboardSegue){
         isEditing = false
-   
     }
-    
     override var preferredStatusBarStyle : UIStatusBarStyle {
         return .lightContent
     }
@@ -183,20 +161,9 @@ extension AlarmTableViewController : AlarmTableViewCellDelegate {
         let index = tableView.indexPath(for: cell)
         alarms[(index?.row)!].enabled = sender.isOn
         apiClient.editAlarm(alarm: alarms[(index?.row)!])
-        if sender.isOn {
-            //PUT request
-            print("switch on")
-            
-            tableView.reloadRows(at: [index!], with: .automatic)
-        } else {
-            //PUT request
-            print("swithc is off")
-            tableView.reloadRows(at: [index!], with: .automatic)
-        }
-       
+        tableView.reloadRows(at: [index!], with: .automatic)
     }
-    
-    
+
 }
 extension AlarmTableViewController : AddEditAlarmViewControllerDelegate {
     func addEditAlarmViewController(_ controller: AddEditAlarmViewController, didFinishAdding item: Alarm) {
@@ -209,7 +176,6 @@ extension AlarmTableViewController : AddEditAlarmViewControllerDelegate {
         
         dismiss(animated: true, completion: nil)
         apiClient.addAlarm(alarm: item)
-        
     }
     
     func addEditAlarmViewController(_ controller: AddEditAlarmViewController, didFinishEditing item: Alarm) {

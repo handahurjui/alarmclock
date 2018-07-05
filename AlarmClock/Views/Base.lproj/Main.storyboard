@@ -93,6 +93,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="QGa-LC-Ogx">
                                 <rect key="frame" x="0.0" y="288" width="375" height="379"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="separatorColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="Qkd-On-Z2L" id="Dxf-F7-QQx"/>
                                     <outlet property="delegate" destination="Qkd-On-Z2L" id="l6o-A7-28d"/>
@@ -307,7 +308,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="8aI-Ye-T8Q" kind="presentation" identifier="editSegue" id="4P1-Wj-H3R"/>
+                        <segue destination="8aI-Ye-T8Q" kind="presentation" identifier="editSegue" id="hMa-m0-l9T"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LcP-Mz-nQh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -349,6 +350,6 @@
         <image name="icons8-timer-30" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="4P1-Wj-H3R"/>
+        <segue reference="hMa-m0-l9T"/>
     </inferredMetricsTieBreakers>
 </document>

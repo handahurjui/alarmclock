@@ -73,39 +73,6 @@ class NetworkClient {
                     }
                 }
             }
-            
-//            guard let response = response , let data = data else { return }
-//            print(response)
-//            print("response data \n")
-//            print("%+v", data)
-//
-//            let responseString = String(data: data, encoding: .utf8)
-//            print("raw response: \(responseString!)")
-//
-//
-//            if let error = error {
-//                completion(nil,error)
-//            } else {
-//
-//
-//                do {
-////                    print (" response serialized \(try JSONSerialization.jsonObject(with: data, options: []) )")
-//                    alarms = try decoder.decode([Alarm].self, from: data)
-//
-//                } catch  {
-//                    print("Error parsing response//// : \(error.localizedDescription)")
-//                }
-////                var jsonResult: [Alarm]?
-////                do {
-////                    jsonResult = try JSONSerialization.jsonObject(with: data, options: []) as? [Alarm]
-////                    print("\(jsonResult)")
-////                } catch let decodeError as NSError {
-////                    print("Decoder error: \(decodeError.localizedDescription)\n")
-////                    return
-////                }
-////                completion(AlarmResponse.parseAlarms(fromJSON:try JSONSerialization.jsonObject(with: data, options: [])), nil)
-//                completion(alarms,nil)
-//            }
         }
         dataTask?.resume()
     }
@@ -228,13 +195,6 @@ class NetworkClient {
         var request = URLRequest(url: url)
         request.httpMethod = "DELETE"
         request.allHTTPHeaderFields = ["x-token": NetworkClient.token]
-//        let requestBody = ["label":alarm.label,
-//                           "hour":alarm.hour,
-//                           "minutes":alarm.minutes,
-//                           "enabled": alarm.enabled ] as [String:Any]
-//        let data = try? JSONSerialization.data(withJSONObject: requestBody, options: [])
-//        request.httpBody = data
-        
         dataTask = defaultSession.dataTask(with: request, completionHandler: { [weak self] (data, response, error) in
             defer { self?.dataTask = nil }
             if let error = error {
