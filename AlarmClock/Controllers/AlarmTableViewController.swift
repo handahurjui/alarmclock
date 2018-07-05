@@ -194,6 +194,7 @@ extension AlarmTableViewController : AddEditAlarmViewControllerDelegate {
     }
     func addEditAlarmViewController(_ controller: AddEditAlarmViewController, didDeleteItem item: Alarm){
         
+        isEditing = false
         if let index = alarms.index(of: item) {
             let indexPath = IndexPath(row: index, section:0)
             alarms.remove(at: index)
