@@ -25,7 +25,7 @@ struct AlarmResponse : Codable {
     }
 }
 
-struct Alarm : Codable {
+class Alarm : NSObject, Codable {
     var id: Int
     var label : String
     var hour : Int
@@ -33,6 +33,14 @@ struct Alarm : Codable {
     var enabled: Bool?
     var token: String
     
+    override init(){
+        self.id = 0
+        self.label = "Alarm"
+        self.hour = 0
+        self.minutes = 0
+        self.enabled = true
+        self.token = ""
+    }
     init(id: Int, label: String, hour: Int, minutes: Int, enabled: Bool, token: String){
         self.id = id
         self.label = label

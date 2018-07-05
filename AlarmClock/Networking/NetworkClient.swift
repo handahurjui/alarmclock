@@ -160,13 +160,14 @@ class NetworkClient {
         guard var url = URL(string: urlString) else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
-        request.allHTTPHeaderFields = ["x-token": NetworkClient.token]
-        let requestBody = ["label":alarm.label,
-                           "hour":alarm.hour,
-                           "minutes":alarm.minutes,
-        "enabled": alarm.enabled ] as [String:Any]
-        let data = try? JSONSerialization.data(withJSONObject: requestBody, options: [])
-        request.httpBody = data
+        request.allHTTPHeaderFields = ["x-token": NetworkClient.token,
+                                       "Content-Type":"application/json"]
+        do {
+            request.httpBody = try encoder.encode(alarm)
+        } catch let encodeError as NSError {
+            print("Encoder error: \(encodeError.localizedDescription)\n")
+            
+        }
         
         dataTask = defaultSession.dataTask(with: request, completionHandler: { [weak self] (data, response, error) in
             defer { self?.dataTask = nil }
@@ -176,7 +177,7 @@ class NetworkClient {
                 if let data = data , let response = response as? HTTPURLResponse, response.statusCode == 200 {
                     do {
                         let  alarm = try self?.decoder.decode(Alarm.self, from: data)
-                        print("Alarm from POST resut id: \(alarm?.id)")
+                        print("Alarm from POST result id: \(alarm?.id)")
                     } catch let decoderError as NSError {
                         self?.errorMessage += "Decoder error: \(decoderError.localizedDescription)"
                         return
@@ -209,7 +210,7 @@ class NetworkClient {
                 if let data = data , let response = response as? HTTPURLResponse, response.statusCode == 200 {
                     do {
                         let  alarm = try self?.decoder.decode(Alarm.self, from: data)
-                        print("Alarm from PUT resut id: \(alarm?.id)")
+                        print("Alarm from PUT result id: \(alarm?.id)")
                     } catch let decoderError as NSError {
                         self?.errorMessage += "Decoder error: \(decoderError.localizedDescription)"
                         return

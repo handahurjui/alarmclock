@@ -17,6 +17,7 @@
 		DD8F4CD920EBC04B00E560AA /* AlarmTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8F4CD820EBC04B00E560AA /* AlarmTableViewCell.swift */; };
 		DD8F4CDB20EBC0F500E560AA /* AlarmTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8F4CDA20EBC0F500E560AA /* AlarmTableViewController.swift */; };
 		DD8F4CDE20EBCB1700E560AA /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8F4CDD20EBCB1700E560AA /* NetworkClient.swift */; };
+		DDF7DA5820EE4F87005C0EB4 /* EditLabelTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7DA5720EE4F87005C0EB4 /* EditLabelTableViewController.swift */; };
 		F7B936301A204584EAB1E140 /* Pods_AlarmClock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 036F8CEA08289B4D6E33FBCB /* Pods_AlarmClock.framework */; };
 /* End PBXBuildFile section */
 
@@ -36,6 +37,7 @@
 		DD8F4CD820EBC04B00E560AA /* AlarmTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmTableViewCell.swift; sourceTree = "<group>"; };
 		DD8F4CDA20EBC0F500E560AA /* AlarmTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmTableViewController.swift; sourceTree = "<group>"; };
 		DD8F4CDD20EBCB1700E560AA /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
+		DDF7DA5720EE4F87005C0EB4 /* EditLabelTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLabelTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,9 +104,10 @@
 		DD8F4CD220EB66AA00E560AA /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				DD8F4CC120EB619E00E560AA /* AlarmViewController.swift */,
 				DD8F4CDA20EBC0F500E560AA /* AlarmTableViewController.swift */,
+				DD8F4CC120EB619E00E560AA /* AlarmViewController.swift */,
 				DD783E8520ECEF300061B0E1 /* AddEditAlarmViewController.swift */,
+				DDF7DA5720EE4F87005C0EB4 /* EditLabelTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -257,6 +260,7 @@
 			files = (
 				DD8F4CC220EB619E00E560AA /* AlarmViewController.swift in Sources */,
 				DD783E8620ECEF300061B0E1 /* AddEditAlarmViewController.swift in Sources */,
+				DDF7DA5820EE4F87005C0EB4 /* EditLabelTableViewController.swift in Sources */,
 				DD8F4CDB20EBC0F500E560AA /* AlarmTableViewController.swift in Sources */,
 				DD8F4CC020EB619E00E560AA /* AppDelegate.swift in Sources */,
 				DD8F4CD620EBA52400E560AA /* Alarm.swift in Sources */,
