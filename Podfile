@@ -6,6 +6,6 @@ target 'AlarmClock' do
   use_frameworks!
 
   # Pods for AlarmClock
-  pod 'Alamofire'
+  
   pod 'MBProgressHUD', '~> 1.1.0'
 end
